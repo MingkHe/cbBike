@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mingkunhe (generated)" id="1576994858419-3">
+        <addColumn tableName="station">
+            <column name="sid" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1576994858419-4">
+        <addColumn tableName="bike_delta">
+            <column name="station_id" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1576994858419-5">
+        <dropForeignKeyConstraint baseTableName="BIKE_DELTA" constraintName="FK_BIKE_DELTA_SID_ID"/>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1576994858419-6">
+        <dropColumn columnName="SID_ID" tableName="BIKE_DELTA"/>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1576994858419-7">
+        <dropColumn columnName="STATION_ID" tableName="STATION"/>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1576994858419-1">
+        <dropUniqueConstraint constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1576994858419-2">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

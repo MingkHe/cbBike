@@ -1,0 +1,32 @@
+{
+    "name": "BikeDelta",
+    "fields": [
+        {
+            "fieldName": "stationID",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "minute",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "weekday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "deltaValue",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191222060047",
+    "entityTableName": "bike_delta",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

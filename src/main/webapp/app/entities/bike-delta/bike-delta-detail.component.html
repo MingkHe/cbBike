@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bikeDelta">
+            <h2><span>Bike Delta</span> {{bikeDelta.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Station ID</span></dt>
+                <dd>
+                    <span>{{bikeDelta.stationID}}</span>
+                </dd>
+                <dt><span>Minute</span></dt>
+                <dd>
+                    <span>{{bikeDelta.minute}}</span>
+                </dd>
+                <dt><span>Weekday</span></dt>
+                <dd>
+                    <span>{{bikeDelta.weekday}}</span>
+                </dd>
+                <dt><span>Delta Value</span></dt>
+                <dd>
+                    <span>{{bikeDelta.deltaValue}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bike-delta', bikeDelta.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
