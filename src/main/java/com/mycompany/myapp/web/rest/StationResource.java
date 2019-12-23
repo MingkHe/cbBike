@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -116,5 +116,12 @@ public class StationResource {
         log.debug("REST request to delete Station : {}", id);
         stationRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/stationsIdByName/{name}")
+    public ResponseEntity<Station> getStationIdByName(@PathVariable String name) {
+        log.debug("REST request to get Station : {}", name);
+        Optional<Station> station = stationRepository.findStationByName(name);
+        return ResponseUtil.wrapOrNotFound(station);
     }
 }

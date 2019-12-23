@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -98,10 +98,31 @@ public class BikeDeltaResource {
      * @param id the id of the bikeDelta to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the bikeDelta, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/bike-deltas/{id}")
-    public ResponseEntity<BikeDelta> getBikeDelta(@PathVariable Long id) {
-        log.debug("REST request to get BikeDelta : {}", id);
+    @GetMapping("/bike-deltas-id/{id}")
+    public ResponseEntity<BikeDelta> getBikeDeltaByID(@PathVariable Long id) {
+        log.debug("REST request to get BikeDeltaByID : {}", id);
         Optional<BikeDelta> bikeDelta = bikeDeltaRepository.findById(id);
+        return ResponseUtil.wrapOrNotFound(bikeDelta);
+    }
+
+    @GetMapping(path = "/bike-deltas/{sid}/{minute}/{weekday}", produces = "application/json")
+    public ResponseEntity<BikeDelta> getBikeDelta(@PathVariable Integer sid, @PathVariable Integer minute, @PathVariable Boolean weekday) {
+        log.debug("REST request to get BikeDelta : {}", sid, minute, weekday);
+        Optional<BikeDelta> bikeDelta = bikeDeltaRepository.findBikeDeltaByStationIDAndMinuteAndWeekday(sid, minute, weekday);
+        return ResponseUtil.wrapOrNotFound(bikeDelta);
+    }
+
+    @GetMapping("/bike-deltas/{sid}/{minute}")
+    public ResponseEntity<BikeDelta> getBikeDeltaByMinute(@PathVariable Integer sid, @PathVariable Integer minute) {
+        log.debug("REST request to get BikeDelta : {}", sid, minute);
+        Optional<BikeDelta> bikeDelta = bikeDeltaRepository.findBikeDeltaByStationIDAndMinute(sid, minute);
+        return ResponseUtil.wrapOrNotFound(bikeDelta);
+    }
+
+    @GetMapping("/bike-deltas/{sid}")
+    public ResponseEntity<BikeDelta> getBikeDeltaBySID(@PathVariable Integer sid) {
+        log.debug("REST request to get BikeDeltaBySID : {}", sid);
+        Optional<BikeDelta> bikeDelta = bikeDeltaRepository.findBikeDeltaByStationID(sid);
         return ResponseUtil.wrapOrNotFound(bikeDelta);
     }
 
