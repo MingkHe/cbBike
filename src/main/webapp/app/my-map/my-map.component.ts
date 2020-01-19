@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import TravelMode = google.maps.TravelMode;
+import DirectionsRenderer = google.maps.DirectionsRenderer;
 
 @Component({
   selector: 'jhi-my-map',
@@ -15,6 +16,10 @@ import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 //
 // }
 export class MyMapComponent implements AfterViewInit {
+
+  totalTime = 0;
+  totalDistance = 0;
+
   title = 'angular-gmap';
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
   map: google.maps.Map;
@@ -56,9 +61,6 @@ export class MyMapComponent implements AfterViewInit {
     title: 'E 53 St & Lexington Ave'
   });
 
-
-
-
   ngAfterViewInit() {
     this.mapInitializer();
   }
@@ -69,5 +71,58 @@ export class MyMapComponent implements AfterViewInit {
     this.marker1.setMap(this.map);
     this.marker2.setMap(this.map);
     this.marker3.setMap(this.map);
+
+    const infowindow = new google.maps.InfoWindow({
+      content: 'Broadway & Battery Pl'
+    });
+
+    this.marker1.addListener('click', function(){
+      infowindow.setContent(this.marker1.getTitle()+this.marker1.getPosition())
+      infowindow.open(this.map, this.marker1);
+    }.bind(this));
+
+    const directionReqSer = new google.maps.DirectionsService();
+    // const directionReq = new DirectionsReqBycicle(this.coordinates1, this.coordinates2);
+    const directionReq = {
+      origin: this.coordinates1,
+      destination: this.coordinates2,
+      travelMode: TravelMode.BICYCLING
+    }
+
+    const directionDisplay = new DirectionsRenderer();
+    directionDisplay.setMap(this.map);
+    directionReqSer.route(directionReq, function (result, status) {
+      if(status === google.maps.DirectionsStatus.OK) {
+        directionDisplay.setDirections(result);
+
+        // for (let route of result.routes) {
+        //   for (let leg of route.legs) {
+        //     console.log(leg.distance)
+        //     this.totalTime = leg.duration.string
+        //     this.totalDistance = leg.distance.string
+        //   }
+        // }
+
+        const leg = result.routes[0].legs[0]
+        this.totalTime = leg.duration.text;
+        this.totalDistance = leg.distance.text;
+
+      }
+    }.bind(this))
+
   }
 }
+
+// class DirectionsReqBycicle implements  DirectionsRequest {
+//   travelModel: TravelMode;
+//   origin: LatLng;
+//   destination: LatLng;
+//
+//   constructor(start: LatLng, end: LatLng){
+//     this.origin = start;
+//     this.destination = end;
+//     this.travelModel = TravelMode.BICYCLING;
+//   }
+//
+// }
+
