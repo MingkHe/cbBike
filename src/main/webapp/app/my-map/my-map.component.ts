@@ -93,7 +93,7 @@ export class MyMapComponent implements AfterViewInit {
     directionDisplay.setMap(this.map);
     directionReqSer.route(directionReq, function (result, status) {
       if(status === google.maps.DirectionsStatus.OK) {
-        directionDisplay.setDirections(result);
+          directionDisplay.setDirections(result);
 
         // for (let route of result.routes) {
         //   for (let leg of route.legs) {
