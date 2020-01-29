@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-station-information-heading">Create or edit a Station Information</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_station_id">Station Id</label>
+                    <input type="number" class="form-control" name="station_id" id="field_station_id"
+                           formControlName="station_id"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_external_id">External Id</label>
+                    <input type="text" class="form-control" name="external_id" id="field_external_id"
+                           formControlName="external_id"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_short_name">Short Name</label>
+                    <input type="number" class="form-control" name="short_name" id="field_short_name"
+                           formControlName="short_name"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lat">Lat</label>
+                    <input type="number" class="form-control" name="lat" id="field_lat"
+                           formControlName="lat"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lon">Lon</label>
+                    <input type="number" class="form-control" name="lon" id="field_lon"
+                           formControlName="lon"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_region_id">Region Id</label>
+                    <input type="number" class="form-control" name="region_id" id="field_region_id"
+                           formControlName="region_id"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_rental_methods_0">Rental Methods 0</label>
+                    <input type="text" class="form-control" name="rental_methods_0" id="field_rental_methods_0"
+                           formControlName="rental_methods_0"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_rental_methods_1">Rental Methods 1</label>
+                    <input type="text" class="form-control" name="rental_methods_1" id="field_rental_methods_1"
+                           formControlName="rental_methods_1"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_capacity">Capacity</label>
+                    <input type="number" class="form-control" name="capacity" id="field_capacity"
+                           formControlName="capacity"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_rental_url">Rental Url</label>
+                    <input type="text" class="form-control" name="rental_url" id="field_rental_url"
+                           formControlName="rental_url"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_electric_bike_surcharge_waiver">Electric Bike Surcharge Waiver</label>
+                    <input type="text" class="form-control" name="electric_bike_surcharge_waiver" id="field_electric_bike_surcharge_waiver"
+                           formControlName="electric_bike_surcharge_waiver"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_eightd_has_key_dispenser">Eightd Has Key Dispenser</label>
+                    <input type="text" class="form-control" name="eightd_has_key_dispenser" id="field_eightd_has_key_dispenser"
+                           formControlName="eightd_has_key_dispenser"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="station_information">
+            <h2><span>Station Information</span> {{station_information.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Station Id</span></dt>
+                <dd>
+                    <span>{{station_information.station_id}}</span>
+                </dd>
+                <dt><span>External Id</span></dt>
+                <dd>
+                    <span>{{station_information.external_id}}</span>
+                </dd>
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{station_information.name}}</span>
+                </dd>
+                <dt><span>Short Name</span></dt>
+                <dd>
+                    <span>{{station_information.short_name}}</span>
+                </dd>
+                <dt><span>Lat</span></dt>
+                <dd>
+                    <span>{{station_information.lat}}</span>
+                </dd>
+                <dt><span>Lon</span></dt>
+                <dd>
+                    <span>{{station_information.lon}}</span>
+                </dd>
+                <dt><span>Region Id</span></dt>
+                <dd>
+                    <span>{{station_information.region_id}}</span>
+                </dd>
+                <dt><span>Rental Methods 0</span></dt>
+                <dd>
+                    <span>{{station_information.rental_methods_0}}</span>
+                </dd>
+                <dt><span>Rental Methods 1</span></dt>
+                <dd>
+                    <span>{{station_information.rental_methods_1}}</span>
+                </dd>
+                <dt><span>Capacity</span></dt>
+                <dd>
+                    <span>{{station_information.capacity}}</span>
+                </dd>
+                <dt><span>Rental Url</span></dt>
+                <dd>
+                    <span>{{station_information.rental_url}}</span>
+                </dd>
+                <dt><span>Electric Bike Surcharge Waiver</span></dt>
+                <dd>
+                    <span>{{station_information.electric_bike_surcharge_waiver}}</span>
+                </dd>
+                <dt><span>Eightd Has Key Dispenser</span></dt>
+                <dd>
+                    <span>{{station_information.eightd_has_key_dispenser}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/station-information', station_information.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div>
+    <h2 id="page-heading">
+        <span>Mean Aggregations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-mean-aggregation" [routerLink]="['/mean-aggregation/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Mean Aggregation
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="mean_aggregations?.length === 0">
+        <span>No mean_aggregations found</span>
+    </div>
+    <div class="table-responsive" *ngIf="mean_aggregations?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span>ID</span></th>
+            <th scope="col" ><span>Station ID</span></th>
+            <th scope="col" ><span>Is Weekday</span></th>
+            <th scope="col" ><span>Minute</span></th>
+            <th scope="col" ><span>Delta</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mean_aggregation of mean_aggregations ;trackBy: trackId">
+                <td><a [routerLink]="['/mean-aggregation', mean_aggregation.id, 'view' ]">{{mean_aggregation.id}}</a></td>
+                <td>{{mean_aggregation.stationID}}</td>
+                <td>{{mean_aggregation.isWeekday}}</td>
+                <td>{{mean_aggregation.minute}}</td>
+                <td>{{mean_aggregation.delta}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/mean-aggregation', mean_aggregation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/mean-aggregation', mean_aggregation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(mean_aggregation)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

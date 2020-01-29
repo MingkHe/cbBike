@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "stationID",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "isWeekday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "minute",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "delta",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20200128014229",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "mean_aggregation",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

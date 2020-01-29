@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mingkunhe (generated)" id="1580179703160-3">
+        <createTable tableName="mean_aggregation">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="mean_aggregationPK"/>
+            </column>
+            <column name="delta" type="DOUBLE"/>
+            <column name="is_weekday" type="BOOLEAN"/>
+            <column name="minute" type="INT"/>
+            <column name="station_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1580179703160-4">
+        <createTable tableName="station_information">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="station_informationPK"/>
+            </column>
+            <column name="capacity" type="INT"/>
+            <column name="eightd_has_key_dispenser" type="VARCHAR(255)"/>
+            <column name="electric_bike_surcharge_waiver" type="VARCHAR(255)"/>
+            <column name="external_id" type="VARCHAR(255)"/>
+            <column name="lat" type="DOUBLE"/>
+            <column name="lon" type="DOUBLE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="region_id" type="INT"/>
+            <column name="rental_methods_0" type="VARCHAR(255)"/>
+            <column name="rental_methods_1" type="VARCHAR(255)"/>
+            <column name="rental_url" type="VARCHAR(255)"/>
+            <column name="short_name" type="DOUBLE"/>
+            <column name="station_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1580179703160-5">
+        <dropTable tableName="BIKE_DELTA"/>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1580179703160-6">
+        <dropTable tableName="STATION"/>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1580179703160-1">
+        <dropUniqueConstraint constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="mingkunhe (generated)" id="1580179703160-2">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

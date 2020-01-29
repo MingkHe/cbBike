@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span>Station Informations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-station-information" [routerLink]="['/station-information/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span>
+            Create a new Station Information
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="station_informations?.length === 0">
+        <span>No station_informations found</span>
+    </div>
+    <div class="table-responsive" *ngIf="station_informations?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span>ID</span></th>
+            <th scope="col" ><span>Station Id</span></th>
+            <th scope="col" ><span>External Id</span></th>
+            <th scope="col" ><span>Name</span></th>
+            <th scope="col" ><span>Short Name</span></th>
+            <th scope="col" ><span>Lat</span></th>
+            <th scope="col" ><span>Lon</span></th>
+            <th scope="col" ><span>Region Id</span></th>
+            <th scope="col" ><span>Rental Methods 0</span></th>
+            <th scope="col" ><span>Rental Methods 1</span></th>
+            <th scope="col" ><span>Capacity</span></th>
+            <th scope="col" ><span>Rental Url</span></th>
+            <th scope="col" ><span>Electric Bike Surcharge Waiver</span></th>
+            <th scope="col" ><span>Eightd Has Key Dispenser</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let station_information of station_informations ;trackBy: trackId">
+                <td><a [routerLink]="['/station-information', station_information.id, 'view' ]">{{station_information.id}}</a></td>
+                <td>{{station_information.station_id}}</td>
+                <td>{{station_information.external_id}}</td>
+                <td>{{station_information.name}}</td>
+                <td>{{station_information.short_name}}</td>
+                <td>{{station_information.lat}}</td>
+                <td>{{station_information.lon}}</td>
+                <td>{{station_information.region_id}}</td>
+                <td>{{station_information.rental_methods_0}}</td>
+                <td>{{station_information.rental_methods_1}}</td>
+                <td>{{station_information.capacity}}</td>
+                <td>{{station_information.rental_url}}</td>
+                <td>{{station_information.electric_bike_surcharge_waiver}}</td>
+                <td>{{station_information.eightd_has_key_dispenser}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/station-information', station_information.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/station-information', station_information.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(station_information)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

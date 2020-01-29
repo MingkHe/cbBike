@@ -1,0 +1,67 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "station_id",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "external_id",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "short_name",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "lat",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "lon",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "region_id",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rental_methods_0",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rental_methods_1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "capacity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rental_url",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "electric_bike_surcharge_waiver",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "eightd_has_key_dispenser",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200128013238",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "station_information",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
