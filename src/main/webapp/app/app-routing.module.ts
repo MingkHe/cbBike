@@ -6,12 +6,18 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
+import { MyMapComponent } from 'app/my-map/my-map.component';
+
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       [
+        {
+          path: 'jhi-myMap',
+          component: MyMapComponent
+        },
         {
           path: 'admin',
           data: {
