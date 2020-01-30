@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -105,6 +105,13 @@ public class Mean_aggregationResource {
         return ResponseUtil.wrapOrNotFound(mean_aggregation);
     }
 
+    @GetMapping("/mean-aggregations/{sid}/{minute}/{weekday}")
+    public ResponseEntity<Mean_aggregation> getMean_aggregationBySidAndWeekdayAndMinute(@PathVariable Integer sid, @PathVariable Integer minute, @PathVariable Boolean weekday) {
+        log.debug("REST request to get Mean_aggregation by sid minute, weekday: {}", sid, minute, weekday);
+        Optional<Mean_aggregation> mean_aggregation = mean_aggregationRepository.findMean_aggregationByStationIDAndMinuteAndIsWeekday(sid, minute, weekday);
+        return ResponseUtil.wrapOrNotFound(mean_aggregation);
+    }
+
     /**
      * {@code DELETE  /mean-aggregations/:id} : delete the "id" mean_aggregation.
      *
@@ -117,4 +124,6 @@ public class Mean_aggregationResource {
         mean_aggregationRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
+
+
 }

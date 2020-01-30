@@ -27,6 +27,10 @@ export class Mean_aggregationService {
     return this.http.get<IMean_aggregation>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findBySidAndMinuteAndWeekday(sid: number, minute: number, weekday: boolean): Observable<EntityResponseType> {
+    return this.http.get<IMean_aggregation>(`${this.resourceUrl}/${sid}/${minute}/${weekday}`, { observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IMean_aggregation[]>(this.resourceUrl, { params: options, observe: 'response' });
