@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import TravelMode = google.maps.TravelMode;
-import DirectionsRenderer = google.maps.DirectionsRenderer;
+import {MapService} from "app/map.service";
 
 @Component({
   selector: 'jhi-my-map',
@@ -32,34 +31,39 @@ export class MyMapComponent implements AfterViewInit {
     center: this.coordinates,
     zoom: 8
   };
-
-  marker = new google.maps.Marker({
-    position: this.coordinates,
-    map: this.map,
-    title: 'Hello World!'
-  });
-
-
   coordinates1 = new google.maps.LatLng(40.70463334, -74.01361706);
-  marker1 = new google.maps.Marker({
-    position: this.coordinates1,
-    map: this.map,
-    title: 'Broadway & Battery Pl'
-  });
-
   coordinates2 = new google.maps.LatLng(40.75510267, -73.97498696);
-  marker2 = new google.maps.Marker({
-    position: this.coordinates2,
-    map: this.map,
-    title: 'E 47 St & Park Ave'
-  });
+  constructor(
+    private mapService: MapService
+  ){}
 
-  coordinates3 = new google.maps.LatLng(40.75828065, -73.97069431);
-  marker3 = new google.maps.Marker({
-    position: this.coordinates3,
-    map: this.map,
-    title: 'E 53 St & Lexington Ave'
-  });
+  // marker = new google.maps.Marker({
+  //   position: this.coordinates,
+  //   map: this.map,
+  //   title: 'Hello World!'
+  // });
+  //
+  //
+
+  // marker1 = new google.maps.Marker({
+  //   position: this.coordinates1,
+  //   map: this.map,
+  //   title: 'Broadway & Battery Pl'
+  // });
+  //
+
+  // marker2 = new google.maps.Marker({
+  //   position: this.coordinates2,
+  //   map: this.map,
+  //   title: 'E 47 St & Park Ave'
+  // });
+  //
+  // coordinates3 = new google.maps.LatLng(40.75828065, -73.97069431);
+  // marker3 = new google.maps.Marker({
+  //   position: this.coordinates3,
+  //   map: this.map,
+  //   title: 'E 53 St & Lexington Ave'
+  // });
 
   ngAfterViewInit() {
     this.mapInitializer();
@@ -67,48 +71,57 @@ export class MyMapComponent implements AfterViewInit {
 
   mapInitializer() {
     this.map = new google.maps.Map(this.gmap.nativeElement, this.mapOptions);
-    this.marker.setMap(this.map);
-    this.marker1.setMap(this.map);
-    this.marker2.setMap(this.map);
-    this.marker3.setMap(this.map);
-
-    const infowindow = new google.maps.InfoWindow({
-      content: 'Broadway & Battery Pl'
-    });
-
-    this.marker1.addListener('click', function(){
-      infowindow.setContent(this.marker1.getTitle()+this.marker1.getPosition())
-      infowindow.open(this.map, this.marker1);
-    }.bind(this));
-
-    const directionReqSer = new google.maps.DirectionsService();
-    // const directionReq = new DirectionsReqBycicle(this.coordinates1, this.coordinates2);
-    const directionReq = {
-      origin: this.coordinates1,
-      destination: this.coordinates2,
-      travelMode: TravelMode.BICYCLING
-    }
-
-    const directionDisplay = new DirectionsRenderer();
-    directionDisplay.setMap(this.map);
-    directionReqSer.route(directionReq, function (result, status) {
-      if(status === google.maps.DirectionsStatus.OK) {
-          directionDisplay.setDirections(result);
-
-        // for (let route of result.routes) {
-        //   for (let leg of route.legs) {
-        //     console.log(leg.distance)
-        //     this.totalTime = leg.duration.string
-        //     this.totalDistance = leg.distance.string
-        //   }
-        // }
-
-        const leg = result.routes[0].legs[0]
-        this.totalTime = leg.duration.text;
-        this.totalDistance = leg.distance.text;
-
-      }
-    }.bind(this))
+    // this.mapService.renderAllStations(this.map);
+    // this.mapService.renderRoute(this.map, this.coordinates1, this.coordinates2);
+    // this.mapService.renderPlace(this.map, 'brooklyn');
+    // this.mapService.findPlace(this.map, 'new york').subscribe(
+    //   (data) =>{
+    //     this.mapService.createMarker(this.map, data);
+    //   }
+    // );
+    this.mapService.renderRouteBetweenTwoPlaces(this.map, 'brooklyn', 'new york');
+    // this.marker.setMap(this.map);
+    // this.marker1.setMap(this.map);
+    // this.marker2.setMap(this.map);
+    // this.marker3.setMap(this.map);
+    //
+    // const infowindow = new google.maps.InfoWindow({
+    //   content: 'Broadway & Battery Pl'
+    // });
+    //
+    // this.marker1.addListener('click', function(){
+    //   infowindow.setContent(this.marker1.getTitle()+this.marker1.getPosition())
+    //   infowindow.open(this.map, this.marker1);
+    // }.bind(this));
+    //
+    // const directionReqSer = new google.maps.DirectionsService();
+    // // const directionReq = new DirectionsReqBycicle(this.coordinates1, this.coordinates2);
+    // const directionReq = {
+    //   origin: this.coordinates1,
+    //   destination: this.coordinates2,
+    //   travelMode: TravelMode.BICYCLING
+    // }
+    //
+    // const directionDisplay = new DirectionsRenderer();
+    // directionDisplay.setMap(this.map);
+    // directionReqSer.route(directionReq, function (result, status) {
+    //   if(status === google.maps.DirectionsStatus.OK) {
+    //       directionDisplay.setDirections(result);
+    //
+    //     // for (let route of result.routes) {
+    //     //   for (let leg of route.legs) {
+    //     //     console.log(leg.distance)
+    //     //     this.totalTime = leg.duration.string
+    //     //     this.totalDistance = leg.distance.string
+    //     //   }
+    //     // }
+    //
+    //     const leg = result.routes[0].legs[0]
+    //     this.totalTime = leg.duration.text;
+    //     this.totalDistance = leg.distance.text;
+    //
+    //   }
+    // }.bind(this))
 
   }
 }
