@@ -79,7 +79,12 @@ export class MyMapComponent implements AfterViewInit {
     //     this.mapService.createMarker(this.map, data);
     //   }
     // );
-    this.mapService.renderRouteBetweenTwoPlaces(this.map, 'brooklyn', 'new york');
+
+    // this.mapService.renderRouteBetweenTwoPlaces(this.map, 'brooklyn', 'new york');
+
+    // this.mapService.renderAllStations(this.map);
+    this.mapService.getRoutesBetweenTwoSearchPlace(this.map, 'battery park', 'gramercy park');
+
     // this.marker.setMap(this.map);
     // this.marker1.setMap(this.map);
     // this.marker2.setMap(this.map);
